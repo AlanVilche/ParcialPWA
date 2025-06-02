@@ -1,0 +1,34 @@
+{
+  "name": "parcialpwa",
+  "version": "1.0.0",
+  "description": "Realizacion de Parcial de PWA",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlanVilche/ParcialPWA.git"
+  },
+  "author": "Alan Vilche",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.15.29",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.1"
+  },
+  "bugs": {
+    "url": "https://github.com/AlanVilche/ParcialPWA/issues"
+  },
+  "homepage": "https://github.com/AlanVilche/ParcialPWA#readme",
+  "keywords": []
+}
