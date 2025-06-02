@@ -20,6 +20,10 @@ const publicacionSchema = new Schema(
             type: String,
             required: true,
         },
+        autor: {
+            type: Schema.Types.ObjectId,
+            ref: "Usuario",
+        },
         likes: [{ type: Schema.Types.ObjectId, ref: "Usuario" }],
 
         Editado: {

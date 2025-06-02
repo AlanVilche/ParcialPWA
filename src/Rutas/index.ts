@@ -4,8 +4,8 @@ import postRouter from "./Publicaciones";
 
 const router = express.Router();
 
-router.use("/usuarios", userRouter);
-router.use("/publicaciones", postRouter);
+router.use("/Usuarios", userRouter);
+router.use("/Publicaciones", postRouter);
 
 
 export default router;
