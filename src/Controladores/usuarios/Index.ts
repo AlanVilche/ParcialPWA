@@ -29,7 +29,7 @@ const ObtenerUsuarios = async (req: Request, res: Response) => {
                 nombreUsuario: usuario.nombreUsuario,
                 email: usuario.email,
                 fechaCreacion: usuario.fechaCreacion,
-                activo: usuario.activo
+                activo: true
             })),
             error: false
         });
@@ -96,7 +96,7 @@ const ActualizarUsuario = async (req: Request, res: Response) => {
     const { id } = req.params;
     const user = await Usuario.findByIdAndUpdate(
       id,
-      { isActive: true },
+      { activo: true },
       { new: true }
     )
     res.status(200).json({
@@ -115,7 +115,7 @@ const BorrarUsuario = async (req: Request, res: Response) => {
     const { id } = req.params;
     const user = await Usuario.findByIdAndUpdate(
       id,
-      { isActive: false },
+      { activo: false },
       { new: true }
     )
     if (!user) {

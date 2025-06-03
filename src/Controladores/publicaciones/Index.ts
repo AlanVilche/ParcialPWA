@@ -92,15 +92,18 @@ const ActualizarPublicacion = async (req: Request, res: Response) => {
 
 const AgregarLike = async (req: Request, res: Response) => {
   const { id } = req.params; // id de la publicación
-  const { userId } = req.body; // id del usuario que da like
+   const { userId } = req.body; // id del usuario que da like 
 
   try {
     // Evita duplicados usando $addToSet
-    const post = await Publicacion.findByIdAndUpdate(
+
+     const post = await Publicacion.findByIdAndUpdate(
       id,
-      { $addToSet: { likes: userId } },
+      
+        { $addToSet: { likes: userId } }
+      ,
       { new: true }
-    ).populate("publicaciones");
+    );
    if (!post) {
       return res.status(404).json({
         message: "Publicación no encontrada",
@@ -146,7 +149,8 @@ const ObtenerPersonasQueDieronLike = async (req: Request, res: Response) => {
   const { id } = req.params; // id de la publicación
 
   try {
-    const post = await Publicacion.findById(id).populate("likes", "nombreUsuario");
+    // Pobla el campo 'likes' con solo el nombre de usuario
+    const post = await Publicacion.findById(id).populate("usuarios");
 
     if (!post) {
       return res.status(404).json({
@@ -154,20 +158,18 @@ const ObtenerPersonasQueDieronLike = async (req: Request, res: Response) => {
         error: true,
         data: undefined,
       });
-    }
-
-    // Extrae solo los nombres de usuario
-    const nombres = post.likes.map((usuario: any) => usuario.nombreUsuario);
+       }
 
     res.status(200).json({
       message: "Usuarios que dieron like obtenidos exitosamente",
       error: false,
-      data: nombres,
+      data: post.likes
     });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 export { CrearPublicacion, ObtenerPublicaciones, ObtenerPublicacionPorId, ActualizarPublicacion, AgregarLike, ObtenerPersonasQueDieronLike, BorrarPublicacion };
         
